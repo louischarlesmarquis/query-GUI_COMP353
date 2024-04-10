@@ -440,7 +440,7 @@ document.getElementById('viewPersonForm').addEventListener('submit', function (e
         });
 });
 
-document.getElementById('updatePersonForm').addEventListener('submit', function (event) {
+document.getElementById('editPersonForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
     const updatedPersonData = {

@@ -45,6 +45,54 @@ app.get('/query1', (req, res) => {
   });
 });
 
+// create a person:
+app.post('/createPerson', (req, res) => {
+  const data = req.body; // Your data from the client
+  console.log(data);
+
+  // Execute the query with the data
+  con.query(queries.query3a, [data.first_name, data.last_name, data.date_of_birth, data.social_security_number, data.medicare, data.phone_number, data.residence_id, data.citizenship, data.email_address], (error, results) => {
+      if (error) {
+          console.error('Error executing query:', error);
+          res.status(500).send('Error creating facility');
+          return;
+      }
+      res.send('Facility created successfully');
+  });
+});
+
+// delete a person:
+app.delete('/deletePerson', (req, res) => {
+  const data = req.body; // Your data from the client
+  console.log(data);
+
+  // Execute the query with the data
+  con.query(queries.query3b, [data.social_security_number], (error, results) => {
+      if (error) {
+          console.error('Error executing query:', error);
+          res.status(500).send('Error creating facility');
+          return;
+      }
+      res.send('Facility deleted successfully');
+  });
+});
+
+// update a person:
+app.put('/updatePerson', (req, res) => {
+  const data = req.body; // Your data from the client
+  console.log(data);
+
+  // Execute the query with the data
+  con.query(queries.query3c, [data.first_name, data.last_name, data.date_of_birth, data.social_security_number, data.medicare, data.phone_number, data.residence_id, data.citizenship, data.email_address, data.social_security_number], (error, results) => {
+    if (error) {
+          console.error('Error executing query:', error);
+          res.status(500).send('Error creating facility');
+          return;
+      }
+      res.send('Facility updated successfully');
+  });
+});
+
 //CREATE FACILITY
 app.post('/createFacility', (req, res) => {
   const data = req.body; // Your data from the client
