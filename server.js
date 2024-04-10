@@ -378,7 +378,7 @@ app.get('/query9', (req, res) => {
 app.post('/query10', (req, res) => {
   // Extract parameters from the request body
   const { employee_id, start_date, end_date } = req.body;
-
+  
   // Check for missing parameters
   if (!employee_id || !start_date || !end_date) {
       return res.status(400).send('Missing one or more required parameters');

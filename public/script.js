@@ -387,7 +387,7 @@ document.getElementById('runquery3').addEventListener('click', function() {
     .catch(error => console.error('There has been a problem with your fetch operation:', error));
 });
 
-document.getElementById('runquery4').addEventListener('click', function() {
+document.getElementById('runquery10').addEventListener('click', function() {
   // Collect data from input fields
   const employeeId = document.getElementById('employee_id').value;
   const startDate = document.getElementById('start_date').value;
@@ -414,7 +414,7 @@ document.getElementById('runquery4').addEventListener('click', function() {
   .then(data => {
       // Display the result in the console or on the webpage
       console.log(data);
-      document.getElementById('queryResult4').innerText = JSON.stringify(data, null, 2);
+      document.getElementById('queryResult10').innerText = JSON.stringify(data, null, 2);
   })
   .catch(error => console.error('There has been a problem with your fetch operation:', error));
 });
