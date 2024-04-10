@@ -1,3 +1,8 @@
+
+// create a person
+const query3a = `INSERT INTO person ()
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
 const query8 = `
 WITH facility_info as (
     SELECT facility.facility_name, facility.address, facility.city, facility.province, facility.postal_code,facility.phone_number,

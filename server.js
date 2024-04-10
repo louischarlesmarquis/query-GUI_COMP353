@@ -45,6 +45,24 @@ app.get('/query1', (req, res) => {
   });
 });
 
+// create a person:
+app.post('/createPerson', (req, res) => {
+  const data = req.body; // Your data from the client
+  console.log(req.body);
+
+  // Construct the SQL query
+  const query = 
+  // Execute the query with the data
+  con.query(query, [data.facility_type_id, data.facility_name, data.address, data.city, data.province, data.postal_code, data.phone_number, data.web_address, data.capacity, data.general_manager_employee_id], (error, results) => {
+      if (error) {
+          console.error('Error executing query:', error);
+          res.status(500).send('Error creating facility');
+          return;
+      }
+      res.send('Facility created successfully');
+  });
+});
+
 //CREATE FACILITY
 app.post('/createFacility', (req, res) => {
   const data = req.body; // Your data from the client
