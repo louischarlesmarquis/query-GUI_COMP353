@@ -476,8 +476,355 @@ document.getElementById('updatePersonForm').addEventListener('submit', function 
         });
 });
 
+document.getElementById('createEmployeeForm').addEventListener('submit', function (event) {
+    event.preventDefault();
 
+    const newEmployeeData = {
+        social_security_number: document.getElementById('employeeSSN').value,
+        role_type_id: document.getElementById('employeeRoleID').value,
+        facility_id: document.getElementById('employeeFacilityID').value // Assuming employees are linked to facilities
+    };
 
+    fetch('/createEmployee', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newEmployeeData),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Assuming the server responds with JSON
+        })
+        .then(data => {
+            console.log(data); // For debugging
+            alert('Employee created successfully');
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('Error creating employee');
+        });
+});
+
+document.getElementById('deleteEmployeeForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const employeeSSN = document.getElementById('deleteEmployeeSSN').value;
+
+    fetch('/deleteEmployee', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({social_security_number: employeeSSN}),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Assuming the server responds with JSON
+        })
+        .then(data => {
+            console.log(data); // For debugging
+            alert('Employee deleted successfully');
+        })
+        .catch(error => {
+            console.error('There was a problem with the delete operation:', error);
+            alert('Error deleting employee');
+        });
+});
+
+document.getElementById('viewEmployeeForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const employeeSSN = document.getElementById('viewEmployeeSSN').value;
+
+    fetch(`/viewEmployee/${employeeSSN}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Assuming the server responds with JSON
+        })
+        .then(data => {
+            const employeeInfoDisplay = document.getElementById('employeeInfo');
+            employeeInfoDisplay.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('Error retrieving employee information');
+        });
+});
+
+document.getElementById('updateEmployeeForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const updatedEmployeeData = {
+        social_security_number: document.getElementById('updateEmployeeSSN').value,
+        role_type_id: document.getElementById('updateEmployeeRoleID').value,
+        facility_id: document.getElementById('updateEmployeeFacilityID').value
+    };
+
+    fetch('/updateEmployee', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedEmployeeData),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Assuming the server responds with JSON
+        })
+        .then(data => {
+            console.log(data); // For debugging
+            alert('Employee updated successfully');
+        })
+        .catch(error => {
+            console.error('Error updating employee:', error);
+            alert('Error updating employee');
+        });
+});
+
+document.getElementById('createVaccinationForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const newVaccinationData = {
+        social_security_number: document.getElementById('vaccinationSSN').value,
+        vaccination_type_id: document.getElementById('vaccinationType').value,
+        dose_number: document.getElementById('doseNumber').value,
+        date: document.getElementById('vaccinationDate').value,
+        facility_id: document.getElementById('facilityID').value // Optional, if vaccines are tracked by facility
+    };
+
+    fetch('/createVaccination', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newVaccinationData),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Assuming the server responds with JSON
+        })
+        .then(data => {
+            alert('Vaccination record created successfully');
+            console.log(data); // For debugging
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('Error creating vaccination record');
+        });
+});
+
+document.getElementById('deleteVaccinationForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const vaccinationRecord = {
+        social_security_number: document.getElementById('deleteVaccinationSSN').value,
+        dose_number: document.getElementById('deleteDoseNumber').value
+    };
+
+    fetch('/deleteVaccination', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(vaccinationRecord),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Assuming the server responds with JSON
+        })
+        .then(data => {
+            alert('Vaccination record deleted successfully');
+            console.log(data); // For debugging
+        })
+        .catch(error => {
+            console.error('There was a problem with the delete operation:', error);
+            alert('Error deleting vaccination record');
+        });
+});
+
+document.getElementById('viewVaccinationForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const socialSecurityNumber = document.getElementById('viewVaccinationSSN').value;
+    const doseNumber = document.getElementById('viewDoseNumber').value; // Assuming dose number can help specify the record
+
+    fetch(`/viewVaccination?ssn=${socialSecurityNumber}&doseNumber=${doseNumber}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Assuming the server responds with JSON
+        })
+        .then(data => {
+            const vaccinationInfoDisplay = document.getElementById('vaccinationDetails');
+            vaccinationInfoDisplay.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('Error retrieving vaccination information');
+        });
+});
+
+document.getElementById('updateVaccinationForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const updatedVaccinationData = {
+        social_security_number: document.getElementById('updateVaccinationSSN').value,
+        vaccination_type_id: document.getElementById('updateVaccinationType').value,
+        dose_number: document.getElementById('updateDoseNumber').value,
+        date: document.getElementById('updateVaccinationDate').value,
+        facility_id: document.getElementById('updateFacilityID').value
+    };
+
+    fetch('/updateVaccination', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedVaccinationData),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Assuming the server responds with JSON
+        })
+        .then(data => {
+            alert('Vaccination record updated successfully');
+            console.log(data); // For debugging
+        })
+        .catch(error => {
+            console.error('Error updating vaccination record:', error);
+            alert('Error updating vaccination record');
+        });
+});
+
+document.getElementById('createInfectionForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const newInfectionData = {
+        social_security_number: document.getElementById('infectionSSN').value,
+        infection_type_id: document.getElementById('infectionType').value,
+        infection_date: document.getElementById('infectionDate').value
+    };
+
+    fetch('/createInfection', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newInfectionData),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Assuming the server responds with JSON
+        })
+        .then(data => {
+            alert('Infection record created successfully');
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('Error creating infection record');
+        });
+});
+
+document.getElementById('deleteInfectionForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const infectionRecord = {
+        social_security_number: document.getElementById('deleteInfectionSSN').value,
+        infection_date: document.getElementById('deleteInfectionDate').value
+    };
+
+    fetch('/deleteInfection', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(infectionRecord),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Assuming the server responds with JSON
+        })
+        .then(data => {
+            alert('Infection record deleted successfully');
+        })
+        .catch(error => {
+            console.error('There was a problem with the delete operation:', error);
+            alert('Error deleting infection record');
+        });
+});
+
+document.getElementById('viewInfectionForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const socialSecurityNumber = document.getElementById('viewInfectionSSN').value;
+
+    fetch(`/viewInfection/${socialSecurityNumber}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Assuming the server responds with JSON
+        })
+        .then(data => {
+            const infectionInfoDisplay = document.getElementById('infectionDetails');
+            infectionInfoDisplay.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('Error retrieving infection information');
+        });
+});
+
+document.getElementById('updateInfectionForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const updatedInfectionData = {
+        social_security_number: document.getElementById('updateInfectionSSN').value,
+        infection_type_id: document.getElementById('updateInfectionType').value,
+        infection_date: document.getElementById('updateInfectionDate').value
+    };
+
+    fetch('/updateInfection', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedInfectionData),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Assuming the server responds with JSON
+        })
+        .then(data => {
+            alert('Infection record updated successfully');
+        })
+        .catch(error => {
+            console.error('Error updating infection record:', error);
+            alert('Error updating infection record');
+        });
+});
 
 
 document.getElementById('runquery2').addEventListener('click', function() {
