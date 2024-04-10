@@ -106,6 +106,7 @@ document.getElementById('updateFacilityForm').addEventListener('submit', functio
   // Collecting the updated facility data
   const updatedData = {
     facility_id: document.getElementById('updateFacilityId').value,
+    facility_type_id: parseInt(document.getElementById('updateFacilityType').value),
     facility_name: document.getElementById('updateFacilityName').value,
     address: document.getElementById('updateAddress').value,
     city: document.getElementById('updateCity').value,
