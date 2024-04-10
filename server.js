@@ -2,7 +2,10 @@ const express = require('express');
 const mysql = require('mysql');
 const app = express();
 const port = 3000;
-const { query8, query9 } = require('./queries');
+
+// get queries from queries.js file
+const queries = require('./queries');
+
 //db credentials
 var con = mysql.createConnection({
   host: 'bkc353.encs.concordia.ca',
@@ -19,6 +22,7 @@ con.connect(function(err) {
   }
   console.log("db connected!");
 });
+
 // Serve static files from 'public' directory
 app.use(express.static('public'));
 app.use(express.json()); //fetch objects as json
@@ -380,26 +384,8 @@ app.post('/query10', (req, res) => {
       return res.status(400).send('Missing one or more required parameters');
   }
 
-  // Define your SQL query
-  const query = `SELECT
-                    f.facility_name,
-                    DAYOFYEAR(s.date) AS day_of_year,
-                    s.start_time,
-                    s.end_time
-                 FROM
-                    schedule s
-                 JOIN
-                    facility f ON s.facility_id = f.facility_id
-                 WHERE
-                    s.employee_id = ?
-                    AND s.date BETWEEN ? AND ?
-                 ORDER BY
-                    f.facility_name ASC,
-                    DAYOFYEAR(s.date) ASC,
-                    s.start_time ASC`;
-
   // Execute the query with parameters
-  con.query(query, [employee_id, start_date, end_date], (err, results) => {
+  con.query(queries.query10, [employee_id, start_date, end_date], (err, results) => {
       if (err) {
           console.error("Error fetching schedule data:", err);
           return res.status(500).send("Error fetching data");

@@ -84,7 +84,26 @@ ORDER BY start_date_of_work DESC,
 first_name DESC,
 last_name DESC;`
 
+const query10 = `SELECT
+f.facility_name,
+DAYOFYEAR(s.date) AS day_of_year,
+s.start_time,
+s.end_time
+FROM
+schedule s
+JOIN
+facility f ON s.facility_id = f.facility_id
+WHERE
+s.employee_id = ?
+AND s.date BETWEEN ? AND ?
+ORDER BY
+f.facility_name ASC,
+DAYOFYEAR(s.date) ASC,
+s.start_time ASC`
+
+
 module.exports = {
     query8,
     query9,
+    query10
 };
