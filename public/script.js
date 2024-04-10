@@ -827,6 +827,127 @@ document.getElementById('updateInfectionForm').addEventListener('submit', functi
         });
 });
 
+document.getElementById('createScheduleForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const newScheduleData = {
+        employee_id: document.getElementById('scheduleEmployeeId').value,
+        facility_id: document.getElementById('scheduleFacilityId').value,
+        date: document.getElementById('scheduleDate').value,
+        start_time: document.getElementById('scheduleStartTime').value,
+        end_time: document.getElementById('scheduleEndTime').value
+    };
+
+    fetch('/createSchedule', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newScheduleData),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Assuming the server responds with JSON
+        })
+        .then(data => {
+            alert('Schedule created successfully');
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('Error creating schedule');
+        });
+});
+
+
+document.getElementById('deleteScheduleForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const scheduleToDelete = {
+        employee_id: document.getElementById('deleteScheduleEmployeeId').value,
+        date: document.getElementById('deleteScheduleDate').value
+    };
+
+    fetch('/deleteSchedule', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(scheduleToDelete),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Assuming the server responds with JSON
+        })
+        .then(data => {
+            alert('Schedule deleted successfully');
+        })
+        .catch(error => {
+            console.error('There was a problem with the delete operation:', error);
+            alert('Error deleting schedule');
+        });
+});
+
+document.getElementById('viewScheduleForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const employeeId = document.getElementById('viewScheduleEmployeeId').value;
+    const date = document.getElementById('viewScheduleDate').value;
+
+    fetch(`/viewSchedule/${employeeId}/${date}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Assuming the server responds with JSON
+        })
+        .then(data => {
+            const scheduleDetailsDisplay = document.getElementById('scheduleDetails');
+            scheduleDetailsDisplay.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('Error retrieving schedule information');
+        });
+});
+
+document.getElementById('updateScheduleForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const updatedScheduleData = {
+        employee_id: document.getElementById('updateScheduleEmployeeId').value,
+        facility_id: document.getElementById('updateScheduleFacilityId').value,
+        date: document.getElementById('updateScheduleDate').value,
+        start_time: document.getElementById('updateScheduleStartTime').value,
+        end_time: document.getElementById('updateScheduleEndTime').value
+    };
+
+    fetch('/updateSchedule', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedScheduleData),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json(); // Assuming the server responds with JSON
+        })
+        .then(data => {
+            alert('Schedule updated successfully');
+        })
+        .catch(error => {
+            console.error('Error updating schedule:', error);
+            alert('Error updating schedule');
+        });
+});
+
+
 
 document.getElementById('runquery2').addEventListener('click', function() {
   fetch('/query8')
