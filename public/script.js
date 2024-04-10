@@ -1103,3 +1103,205 @@ document.getElementById('runquery21').addEventListener('click', function() {
   })
   .catch(error => console.error('There has been a problem with your fetch operation:', error));
 });
+
+
+
+//CREATE infection DATA FETCHING
+document.getElementById('infectionForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
+  
+    // Collecting the form data
+    const formData = {
+        infection_type_id: document.getElementById('infectionTypeId').value,
+        infection_name: document.getElementById('infectionName').value,
+        address: document.getElementById('address').value,
+        city: document.getElementById('city').value,
+        province: document.getElementById('province').value,
+        postal_code: document.getElementById('postalCode').value,
+        phone_number: document.getElementById('phoneNumber').value,
+        web_address: document.getElementById('webAddress').value,
+        capacity: document.getElementById('capacity').value,
+        general_manager_employee_id: document.getElementById('generalManagerEmployeeId').value
+    };
+  
+    // Sending the data to the server via a fetch() request
+    fetch('/createInfection', { //error here
+        method: 'POST', // Method type
+        headers: {
+            'Content-Type': 'application/json', // Indicates the content type of the request body
+        },
+        body: JSON.stringify(formData), // Convert the JavaScript object to a JSON string
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.text(); // or response.text() if your server responds with text
+    })
+    .then(data => {
+        console.log(data); // Handle the success response here
+        alert('Infection created successfully');
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error); //error here
+        alert('Error creating infection');
+    });
+  });
+  
+  //DELETE infection DATA FETCHING
+  document.getElementById('deleteInfectionForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
+  
+    // Get the ID value from the input field
+    const infectionId = document.getElementById('infectionId').value;
+  
+    // Sending the delete request to the server
+    fetch('/deleteInfection', {
+        method: 'DELETE', // Use the DELETE HTTP method
+        headers: {
+            'Content-Type': 'application/json', // Content type
+        },
+        body: JSON.stringify({ infection_id: infectionId }), // Send the infection ID in the request body
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.text(); 
+    })
+    .then(data => {
+        console.log(data); // Success message from the server
+        alert('Infection deleted successfully');
+    })
+    .catch(error => {
+        console.error('There was a problem with the delete operation:', error);
+        alert('Error deleting infection');
+    });
+  });
+  
+  //VIEW infection DATA FETCHING
+  document.getElementById('viewInfectionForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
+  
+    // Get the ID value from the input field
+    const infectionId = document.getElementById('viewInfectionId').value;
+  
+    // Sending the request to the server
+    fetch(`/viewInfection/${infectionId}`) // Use template literals to include the infectionId in the URL
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data); // Log the infection data
+  
+        // Displaying the infection info on the webpage
+        const infectionDisplay = document.getElementById('infectionInfo');
+        infectionDisplay.innerHTML = JSON.stringify(data, null, 2);
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+        alert('Error retrieving infection information');
+    });
+  });
+  
+  //UPDATE infection DATA FETCHING
+  document.getElementById('updateInfectionForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
+  
+    // Collecting the updated Infection data
+    const updatedData = {
+      infection_id: document.getElementById('updateInfectionId').value,
+      infection_type_id: parseInt(document.getElementById('updateInfectionType').value),
+      infection_name: document.getElementById('updateInfectionName').value,
+      address: document.getElementById('updateAddress').value,
+      city: document.getElementById('updateCity').value,
+      province: document.getElementById('updateProvince').value,
+      postal_code: document.getElementById('updatePostalCode').value,
+      phone_number: document.getElementById('updatePhoneNumber').value,
+      web_address: document.getElementById('updateWebAddress').value,
+      capacity: document.getElementById('updateCapacity').value,
+      general_manager_employee_id: document.getElementById('updateGeneralManagerEmployeeId').value
+    };
+  
+    // Sending the update request to the server
+    fetch('/updateInfection', {
+        method: 'PUT', // Use the PUT HTTP method for updates
+        headers: {
+            'Content-Type': 'application/json', // Content type
+        },
+        body: JSON.stringify(updatedData), // Convert the JavaScript object to a JSON string
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.text(); // Assuming the server sends a text response
+    })
+    .then(data => {
+        console.log(data); // Success message from the server
+        alert('Infection updated successfully');
+    })
+    .catch(error => {
+        console.error('There was a problem with the update operation:', error);
+        alert('Error updating infection');
+    });
+  });
+  
+  //LIST ALL FACILITIES FETCH
+  document.getElementById('runQuery1').addEventListener('click', function() {
+    fetch('/query1')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Displaying the result in the console or on the webpage
+        console.log(data);
+        // Get the reference to the queryResult1 div
+        const queryResult1 = document.getElementById('queryResult1');
+  
+        // Clear the existing content of the div
+        queryResult1.innerHTML = '';
+  
+        // Create a table element
+        const table = document.createElement('table');
+        table.classList.add('infection-table');
+  
+        // Create table header row
+        const headerRow = document.createElement('tr');
+  
+        // Add table header cells
+        const headers = ['Infection ID', 'Infection Type ID', 'Infection Name', 'Address', 'City', 'Province', 'Postal Code', 'Phone Number', 'Web Address', 'Capacity', 'General Manager ID'];
+        headers.forEach(headerText => {
+            const headerCell = document.createElement('th');
+            headerCell.textContent = headerText;
+            headerRow.appendChild(headerCell);
+        });
+        table.appendChild(headerRow);
+  
+        // Loop through each object in the data array
+        data.forEach(obj => {
+            // Create a table row
+            const row = document.createElement('tr');
+  
+            // Add table cells with object properties
+            Object.values(obj).forEach(value => {
+                const cell = document.createElement('td');
+                cell.textContent = value;
+                row.appendChild(cell);
+            });
+  
+            // Append the row to the table
+            table.appendChild(row);
+        });
+  
+        // Append the table to the queryResult1 div
+        queryResult1.appendChild(table);
+      })
+      .catch(error => console.error('There has been a problem with your fetch operation:', error));
+  });
