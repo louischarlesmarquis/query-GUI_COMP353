@@ -381,6 +381,27 @@
 
     <button id="runquery15" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 21</button>
     <div id="queryResult15"></div>
+
+
+        <!-- Query 21 text fields -->
+        <div>
+          <label for="social_security_num">Social Security Number:</label>
+          <input type="text" id="social_security_num" name="social_security_num">
+        </div>
+        <div>
+            <label for="infec_date">Infection Date:</label>
+            <input type="date" id="infec_date" name="infec_date">
+        </div>
+        <div>
+            <label for="infection_type">Infection Type (1: covid19, ):</label>
+            <select id="infection_type" name="infection_type">
+              <option value="1">Covid19</option>
+              <option value="2">OTHER STUFF</option>
+              <option value="3">SARS COV 2 VARIANT</option>
+            </select>
+        </div>
+    <button id="runquery21" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 21</button>
+    <div id="queryResult21"></div>
   </div>
 
   <script src="script.js"></script>
