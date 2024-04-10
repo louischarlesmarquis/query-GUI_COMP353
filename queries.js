@@ -386,6 +386,7 @@ GROUP BY province_abbreviation
 ORDER BY province_abbreviation; # order by ASC for province_abbreviation is redundant`
 
 module.exports = {
+    query3a,
     query8,
     query9,
     query10,

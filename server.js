@@ -48,12 +48,10 @@ app.get('/query1', (req, res) => {
 // create a person:
 app.post('/createPerson', (req, res) => {
   const data = req.body; // Your data from the client
-  console.log(req.body);
+  console.log(data);
 
-  // Construct the SQL query
-  const query = 
   // Execute the query with the data
-  con.query(query, [data.facility_type_id, data.facility_name, data.address, data.city, data.province, data.postal_code, data.phone_number, data.web_address, data.capacity, data.general_manager_employee_id], (error, results) => {
+  con.query(queries.query3a, [data.first_name, data.last_name, data.date_of_birth, data.social_security_number, data.medicare, data.phone_number, data.residence_id, data.citizenship, data.email_address], (error, results) => {
       if (error) {
           console.error('Error executing query:', error);
           res.status(500).send('Error creating facility');
