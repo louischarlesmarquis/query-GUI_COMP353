@@ -14,6 +14,7 @@ var con = mysql.createConnection({
   password: 'Potato123',
   database: 'bkc353_4',
 });
+
 //connect to the db
 con.connect(function(err) {
   if (err){ 
@@ -378,7 +379,7 @@ app.get('/query9', (req, res) => {
 app.post('/query10', (req, res) => {
   // Extract parameters from the request body
   const { employee_id, start_date, end_date } = req.body;
-  
+
   // Check for missing parameters
   if (!employee_id || !start_date || !end_date) {
       return res.status(400).send('Missing one or more required parameters');
@@ -513,6 +514,65 @@ app.post('/query18', (req, res) => {
       }
       res.json(results); // Send JSON response
   });
+});
+
+// add infection history, if covid, cancels all employee schedule for next 2 weeks
+app.post('/query21', (req, res) => {
+  // Extract parameters from the request body
+  const { social_security_num, infec_date, infection_type } = req.body;
+
+  // insert an infection
+  con.query(queries.query21a, [social_security_num, infec_date, infection_type], function(err, results) {
+    if (err) {
+      console.error("Error fetching employee data:", err);
+      res.status(500).send("Error fetching data");
+      return;
+    }
+    console.log(results);
+  });
+  let employees_to_notify = []
+
+  if(infection_type == 1){
+      // if infection_type_id == 1, get employees who worked the same day
+    con.query(queries.query21b, [infec_date, infec_date, social_security_num, social_security_num], function(err, results) {
+      if (err) {
+        console.error("Error fetching employee data:", err);
+        res.status(500).send("Error fetching data");
+        return;
+      }
+
+      //console.log(results);
+
+      const subject = "WARNING!"
+  
+      const dateObj = new Date();
+      const month   = dateObj.getUTCMonth() + 1; // months from 1-12
+      const day     = dateObj.getUTCDate();
+      const year    = dateObj.getUTCFullYear();
+      const newDate = year + "/" + month + "/" + day;
+  
+      results.forEach(employee => {
+        let email = employee.email_address;
+        let sender_id = employee.facility_id;
+        let sender_name = employee.facility_name;
+        let sender_employee_id = employee.employee_id;
+        let receiver = employee.first_name + " " + employee.last_name;
+        let email_body_beginning = "You worked in the past two weeks with someone infected by covid-19";
+          con.query(queries.query21c, [sender_id, sender_employee_id, newDate, subject, email_body_beginning, sender_name], function(err, results) {
+            if (err) {
+              console.error("Error fetching employee data:", err);
+              res.status(500).send("Error fetching data");
+              return;
+            }
+        });
+      });
+      
+      res.json(results);
+
+    });
+  }
+
+  
 });
 
 app.listen(port, () => console.log(`Server running on http://localhost:${port}`));

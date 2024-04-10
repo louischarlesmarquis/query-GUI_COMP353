@@ -597,3 +597,35 @@ document.getElementById('runquery18').addEventListener('click', function() {
   .catch(error => console.error('There has been a problem with your fetch operation:', error));
 });
 
+
+document.getElementById('runquery21').addEventListener('click', function() {
+  // Collect data from input fields
+  const social_security_num = document.getElementById('social_security_num').value;
+  const infec_date = document.getElementById('infec_date').value;
+  const infection_type = document.getElementById('infection_type').value;
+  
+  // Send a POST request with the collected data
+  fetch('/query21', {
+      method: 'POST', // Specify the request method
+      headers: {
+          'Content-Type': 'application/json', // Specify the content type as JSON
+      },
+      body: JSON.stringify({ // Convert the data to a JSON string
+          social_security_num: social_security_num,
+          infec_date: infec_date,
+          infection_type: infection_type
+      })
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json(); // Parse the JSON in the response
+  })
+  .then(data => {
+      // Display the result in the console or on the webpage
+      console.log(data);
+      document.getElementById('queryResult21').innerText = JSON.stringify(data, null, 2);
+  })
+  .catch(error => console.error('There has been a problem with your fetch operation:', error));
+});
