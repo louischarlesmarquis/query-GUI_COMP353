@@ -143,7 +143,7 @@ document.getElementById('updateFacilityForm').addEventListener('submit', functio
 
 //LIST ALL FACILITIES FETCH
 document.getElementById('runQuery1').addEventListener('click', function() {
-  fetch('/query13')
+  fetch('/query1')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -153,7 +153,46 @@ document.getElementById('runQuery1').addEventListener('click', function() {
     .then(data => {
       // Displaying the result in the console or on the webpage
       console.log(data);
-      document.getElementById('queryResult1').innerText = JSON.stringify(data, null, 2);
+      // Get the reference to the queryResult1 div
+      const queryResult1 = document.getElementById('queryResult1');
+
+      // Clear the existing content of the div
+      queryResult1.innerHTML = '';
+
+      // Create a table element
+      const table = document.createElement('table');
+      table.classList.add('facility-table');
+
+      // Create table header row
+      const headerRow = document.createElement('tr');
+
+      // Add table header cells
+      const headers = ['Facility ID', 'Facility Type ID', 'Facility Name', 'Address', 'City', 'Province', 'Postal Code', 'Phone Number', 'Web Address', 'Capacity', 'General Manager ID'];
+      headers.forEach(headerText => {
+          const headerCell = document.createElement('th');
+          headerCell.textContent = headerText;
+          headerRow.appendChild(headerCell);
+      });
+      table.appendChild(headerRow);
+
+      // Loop through each object in the data array
+      data.forEach(obj => {
+          // Create a table row
+          const row = document.createElement('tr');
+
+          // Add table cells with object properties
+          Object.values(obj).forEach(value => {
+              const cell = document.createElement('td');
+              cell.textContent = value;
+              row.appendChild(cell);
+          });
+
+          // Append the row to the table
+          table.appendChild(row);
+      });
+
+      // Append the table to the queryResult1 div
+      queryResult1.appendChild(table);
     })
     .catch(error => console.error('There has been a problem with your fetch operation:', error));
 });
