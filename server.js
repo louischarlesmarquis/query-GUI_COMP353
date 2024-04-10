@@ -18,6 +18,14 @@ con.connect(function(err) {
   }
   console.log("db connected!");
 });
+
+// Enable CORS middleware
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Allow requests from any origin
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Allow specified HTTP methods
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Allow specified headers
+  next();
+});
 // Serve static files from 'public' directory
 app.use(express.static('public'));
 app.use(express.json()); //fetch objects as json
@@ -27,14 +35,12 @@ app.use(express.json()); //fetch objects as json
 let selectAllFacility = "select * from facility";
 // ALL FACILITY
 app.get('/query1', (req, res) => {
-  
   con.query(selectAllFacility, function(err, results) {
     if (err) {
       console.error("Error fetching facility data:", err);
       res.status(500).send("Error fetching data");
       return;
     }
-    console.log(results);
     res.json(results); // Send JSON response
   });
 });
@@ -80,7 +86,6 @@ app.delete('/deleteFacility', (req, res) => {
 //VIEW FACILITY
 app.get('/viewFacility/:facilityId', (req, res) => {
   const { facilityId } = req.params;
-
   // Construct the SQL query
   const query = 'SELECT * FROM facility WHERE facility_id = ?';
 
