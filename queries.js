@@ -3,6 +3,14 @@
 const query3a = `INSERT INTO person ()
 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
+// delete a person
+const query3b = `DELETE FROM person
+WHERE person.social_security_number = ?`;
+
+const query3c = `UPDATE bkc353_4.person
+SET first_name = ?, last_name = ?, date_of_birth = ?, social_security_number = ?, medicare = ?, phone_number = ?, residence_id = ?, citizenship = ?, email_address = ?
+WHERE bkc353_4.person.social_security_number = ?`;
+
 const query8 = `
 WITH facility_info as (
     SELECT facility.facility_name, facility.address, facility.city, facility.province, facility.postal_code,facility.phone_number,
@@ -386,7 +394,9 @@ GROUP BY province_abbreviation
 ORDER BY province_abbreviation; # order by ASC for province_abbreviation is redundant`
 
 module.exports = {
+    query3b,
     query3a,
+    query3c,
     query8,
     query9,
     query10,
