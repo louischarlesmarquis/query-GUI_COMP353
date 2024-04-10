@@ -143,7 +143,7 @@ document.getElementById('updateFacilityForm').addEventListener('submit', functio
 
 //LIST ALL FACILITIES FETCH
 document.getElementById('runQuery1').addEventListener('click', function() {
-  fetch('/query1')
+  fetch('/query13')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -316,7 +316,7 @@ document.getElementById('allResidence').addEventListener('click', function() {
 
 
 document.getElementById('runquery2').addEventListener('click', function() {
-  fetch('/query2')
+  fetch('/query8')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -333,7 +333,7 @@ document.getElementById('runquery2').addEventListener('click', function() {
 
 
 document.getElementById('runquery3').addEventListener('click', function() {
-  fetch('/query3')
+  fetch('/query9')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -349,23 +349,40 @@ document.getElementById('runquery3').addEventListener('click', function() {
 });
 
 document.getElementById('runquery4').addEventListener('click', function() {
-  fetch('/query4')
-    .then(response => {
+  // Collect data from input fields
+  const employeeId = document.getElementById('employee_id').value;
+  const startDate = document.getElementById('start_date').value;
+  const endDate = document.getElementById('end_date').value;
+  
+  // Send a POST request with the collected data
+  fetch('/query10', {
+      method: 'POST', // Specify the request method
+      headers: {
+          'Content-Type': 'application/json', // Specify the content type as JSON
+      },
+      body: JSON.stringify({ // Convert the data to a JSON string
+          employee_id: employeeId,
+          start_date: startDate,
+          end_date: endDate
+      })
+  })
+  .then(response => {
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+          throw new Error('Network response was not ok');
       }
-      return response.json();
-    })
-    .then(data => {
-      // Displaying the result in the console or on the webpage
+      return response.json(); // Parse the JSON in the response
+  })
+  .then(data => {
+      // Display the result in the console or on the webpage
       console.log(data);
       document.getElementById('queryResult4').innerText = JSON.stringify(data, null, 2);
-    })
-    .catch(error => console.error('There has been a problem with your fetch operation:', error));
+  })
+  .catch(error => console.error('There has been a problem with your fetch operation:', error));
 });
 
+
 document.getElementById('runquery5').addEventListener('click', function() {
-  fetch('/query5')
+  fetch('/query11')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -382,7 +399,7 @@ document.getElementById('runquery5').addEventListener('click', function() {
 
 
 document.getElementById('runquery6').addEventListener('click', function() {
-  fetch('/query6')
+  fetch('/query12')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -399,7 +416,7 @@ document.getElementById('runquery6').addEventListener('click', function() {
 
 
 document.getElementById('runquery7').addEventListener('click', function() {
-  fetch('/query7')
+  fetch('/query13')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -416,7 +433,7 @@ document.getElementById('runquery7').addEventListener('click', function() {
 
 
 document.getElementById('runquery8').addEventListener('click', function() {
-  fetch('/query8')
+  fetch('/query14')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -433,7 +450,7 @@ document.getElementById('runquery8').addEventListener('click', function() {
 
 
 document.getElementById('runquery9').addEventListener('click', function() {
-  fetch('/query9')
+  fetch('/query15')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -450,7 +467,7 @@ document.getElementById('runquery9').addEventListener('click', function() {
 
 
 document.getElementById('runquery10').addEventListener('click', function() {
-  fetch('/query10')
+  fetch('/query16')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -467,7 +484,7 @@ document.getElementById('runquery10').addEventListener('click', function() {
 
 
 document.getElementById('runquery11').addEventListener('click', function() {
-  fetch('/query11')
+  fetch('/query17')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -484,7 +501,7 @@ document.getElementById('runquery11').addEventListener('click', function() {
 
 
 document.getElementById('runquery12').addEventListener('click', function() {
-  fetch('/query12')
+  fetch('/query18')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
