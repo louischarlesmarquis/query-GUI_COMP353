@@ -528,7 +528,7 @@ document.getElementById('runquery11').addEventListener('click', function() {
 
 
 document.getElementById('runquery12').addEventListener('click', function() {
-  fetch('/query12')
+  fetch(API_URL + '/query12')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');

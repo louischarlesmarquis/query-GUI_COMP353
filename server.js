@@ -431,7 +431,28 @@ app.get('/query11', (req, res) => {
 });
 
 app.get('/query12', (req, res) => {
-  let query = "";
+  let query = `SELECT doctor.first_name,
+  doctor.last_name,
+  infection_history.infection_date,
+  facility.facility_name,
+  (SELECT COUNT(*)
+   FROM secondary_residence
+   WHERE secondary_residence.social_security_number = doctor.doc_ssn) as num_of_second_residence
+FROM (SELECT
+       person.first_name,
+       person.last_name,
+       employee.social_security_number as doc_ssn,
+       facility_id as doc_facility_id
+   FROM employee
+   JOIN person ON employee.social_security_number = person.social_security_number
+   WHERE employee.role_type_id = 2) as doctor
+JOIN infection_history ON doctor.doc_ssn = infection_history.social_security_number
+JOIN facility ON doctor.doc_facility_id = facility.facility_id
+WHERE infection_history.infection_date > curdate() - 14
+ORDER BY
+facility_name,
+num_of_second_residence;
+`;
   
   con.query(query, function(err, results) {
     if (err) {
