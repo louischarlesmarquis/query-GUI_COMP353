@@ -89,6 +89,8 @@
   <h3 class="text-center">A database application system for employees of the health facilities</h3>
   <h5 class="text-center text-secondary">To execute a specific query, click the corresponding button.</h5>
   </br>
+
+  <h6 class=""> Query 1: Create a new facility</h6>
   
   <!-- CREATE FACILITY FORM -->
   <form id="facilityForm" class="p-3">
@@ -136,6 +138,7 @@
   </form>
 
   <!-- DELETE FACILITY FORM -->
+  <h6 class=""> Query 1: Delete a facility</h6>
   <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-md-8">
@@ -153,6 +156,7 @@
   </div>
 
   <!-- VIEW BY FACILITY ID FORM -->
+  <h6 class=""> Query 1: Display a facility by ID</h6>
   <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-md-8">
@@ -171,11 +175,16 @@
   <div id="facilityInfo"></div> <!-- OUTPUT -->
 
   <!-- UPDATE FACILITY FORM -->
+  <h6 class=""> Query 1: Update a facility</h6>
   <form id="updateFacilityForm" class="p-3">
     <div class="mb-3">
-        <label for="updateFacilityId" class="form-label">Facility ID</label>
-        <input type="number" class="form-control" id="updateFacilityId" placeholder="Enter Facility ID" required>
+        <label for="updateFacilityId" class="form-label">Facility ID to change</label>
+        <input type="text" class="form-control" id="updateFacilityId" placeholder="Enter Facility ID" required>
     </div>
+    <div class="mb-3">
+      <label for="updateFacilityType" class="form-label">New Facility type</label>
+      <input type="number" class="form-control" id="updateFacilityType" placeholder="Enter Facility type" required>
+  </div>
     <div class="mb-3">
         <label for="updateFacilityName" class="form-label">Facility Name</label>
         <input type="text" class="form-control" id="updateFacilityName" required>
