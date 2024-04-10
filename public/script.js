@@ -352,6 +352,132 @@ document.getElementById('allResidence').addEventListener('click', function() {
     .catch(error => console.error('There has been a problem with your fetch operation:', error));
 });
 
+document.getElementById('createPersonForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const newPersonData = {
+        social_security_number: document.getElementById('personSSN').value,
+        first_name: document.getElementById('personFirstName').value,
+        last_name: document.getElementById('personLastName').value,
+        date_of_birth: document.getElementById('personDOB').value,
+        medicare: document.getElementById('personMedicare').value,
+        phone_number: document.getElementById('personPhoneNumber').value,
+        residence_id: document.getElementById('personResidenceId').value, // Assuming a field for residence ID
+        citizenship: document.getElementById('personCitizenship').value,
+        email_address: document.getElementById('personEmailAddress').value
+    };
+
+    fetch('/createPerson', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newPersonData),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            alert('Person created successfully');
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('Error creating person');
+        });
+});
+
+document.getElementById('deletePersonForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const personSSN = document.getElementById('deletePersonSSN').value;
+
+    fetch('/deletePerson', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({social_security_number: personSSN}),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            alert('Person deleted successfully');
+        })
+        .catch(error => {
+            console.error('There was a problem with the delete operation:', error);
+            alert('Error deleting person');
+        });
+});
+
+
+document.getElementById('viewPersonForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const personSSN = document.getElementById('viewPersonSSN').value;
+
+    fetch(`/viewPerson/${personSSN}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const personDisplay = document.getElementById('personInfo');
+            personDisplay.innerHTML = JSON.stringify(data, null, 2);
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('Error retrieving person information');
+        });
+});
+
+document.getElementById('updatePersonForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const updatedPersonData = {
+        social_security_number: document.getElementById('updatePersonSSN').value,
+        first_name: document.getElementById('updatePersonFirstName').value,
+        last_name: document.getElementById('updatePersonLastName').value,
+        date_of_birth: document.getElementById('updatePersonDOB').value,
+        medicare: document.getElementById('updatePersonMedicare').value,
+        phone_number: document.getElementById('updatePersonPhoneNumber').value,
+        residence_id: document.getElementById('updatePersonResidenceId').value,
+        citizenship: document.getElementById('updatePersonCitizenship').value,
+        email_address: document.getElementById('updatePersonEmailAddress').value
+    };
+
+    fetch('/updatePerson', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedPersonData),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            alert('Person updated successfully');
+        })
+        .catch(error => {
+            console.error('Error updating person:', error);
+            alert('Error updating person');
+        });
+});
+
+
+
 
 
 document.getElementById('runquery2').addEventListener('click', function() {
