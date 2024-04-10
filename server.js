@@ -494,3 +494,110 @@ app.post('/query21', (req, res) => {
 });
 
 app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
+
+
+//CREATE infection
+app.post('/createInfection', (req, res) => {
+  const data = req.body; // Your data from the client
+  console.log(req.body);
+  // Construct the SQL query
+  const query = `INSERT INTO infection (infection_type_id, infection_name, address, city, province, postal_code, phone_number, web_address, capacity, general_manager_employee_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+  // Execute the query with the data
+  con.query(query, [data.infection_type_id, data.infection_name, data.address, data.city, data.province, data.postal_code, data.phone_number, data.web_address, data.capacity, data.general_manager_employee_id], (error, results) => {
+      if (error) {
+          console.error('Error executing query:', error);
+          res.status(500).send('Error creating infection');
+          return;
+      }
+      res.send('infection created successfully');
+  });
+});
+
+//DELETE infection
+app.delete('/deleteInfection', (req, res) => {
+  const { infection_id } = req.body;
+
+  const query = 'DELETE FROM infection WHERE infection_id = ?';
+
+  con.query(query, [infection_id], (error, results) => {
+      if (error) {
+          console.error('Error executing delete query:', error);
+          res.status(500).send('Error deleting infection');
+          return;
+      }
+      if (results.affectedRows === 0) {
+          res.status(404).send('infection not found');
+      } else {
+          res.send('infection deleted successfully');
+      }
+  });
+});
+
+//VIEW infection
+app.get('/viewInfection/:infectionId', (req, res) => {
+  const { infectionId } = req.params;
+
+  // Construct the SQL query
+  const query = 'SELECT * FROM infection WHERE infection_id = ?';
+
+  // Execute the query with the provided infection ID
+  con.query(query, [infectionId], (error, results) => {
+      if (error) {
+          console.error('Error fetching infection:', error);
+          res.status(500).send('Error fetching infection');
+          return;
+      }
+      if (results.length === 0) {
+          res.status(404).send('infection not found');
+      } else {
+          res.json(results[0]); // Send the infection data as a JSON response
+      }
+  });
+});
+
+//UPDATE infection
+app.put('/updateInfection', (req, res) => {
+  const {
+    infection_id,
+    infection_type_id,
+    infection_name,
+    address,
+    city,
+    province,
+    postal_code,
+    phone_number,
+    web_address,
+    capacity,
+    general_manager_employee_id
+  } = req.body;
+  console.log(req.body);
+  // Construct the SQL query
+  const query = `UPDATE infection 
+                 SET infection_type_id = ?,
+                     infection_name = ?, 
+                     address = ?, 
+                     city = ?, 
+                     province = ?, 
+                     postal_code = ?, 
+                     phone_number = ?, 
+                     web_address = ?, 
+                     capacity = ?, 
+                     general_manager_employee_id = ?
+                 WHERE infection_id = ?`;
+  // Execute the query with the updated data
+  con.query(query, [infection_type_id, infection_name, address, city, province, postal_code, phone_number, web_address, capacity, general_manager_employee_id, infection_id], (error, results) => {
+      if (error) {
+          console.error('Error executing update query:', error);
+          res.status(500).send('Error updating infection');
+          return;
+      }
+      if (results.affectedRows === 0) {
+          res.status(404).send('infection not found or no new data to update');
+      } else {
+          res.send('infection updated successfully');
+      }
+      console.log(results);
+    res.json(results)
+  });
+});
