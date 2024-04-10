@@ -397,10 +397,14 @@ app.post('/query10', (req, res) => {
 
 
 
-app.get('/query11', (req, res) => {
-  let query = "";
+app.post('/query11', (req, res) => {
   
-  con.query(query, function(err, results) {
+  const {employee_id} = req.body;
+
+  if (!employee_id) {
+    return res.status(400).send('Missing one or more required parameters');
+}
+  con.query(queries.query11,[employee_id] ,function(err, results) {
     if (err) {
       console.error("Error fetching employee data:", err);
       res.status(500).send("Error fetching data");
@@ -412,9 +416,7 @@ app.get('/query11', (req, res) => {
 });
 
 app.get('/query12', (req, res) => {
-  let query = "";
-  
-  con.query(query, function(err, results) {
+    con.query(queries.query12, function(err, results) {
     if (err) {
       console.error("Error fetching employee data:", err);
       res.status(500).send("Error fetching data");
@@ -439,10 +441,14 @@ app.get('/query13', (req, res) => {
   });
 });
 
-app.get('/query14', (req, res) => {
-  let query = "";
+app.post('/query14', (req, res) => {
   
-  con.query(query, function(err, results) {
+  const {facility_id} = req.body;
+
+  if (!facility_id) {
+    return res.status(400).send('Missing one or more required parameters');
+}
+  con.query(queries.query14,[facility_id] ,function(err, results) {
     if (err) {
       console.error("Error fetching employee data:", err);
       res.status(500).send("Error fetching data");
@@ -454,9 +460,8 @@ app.get('/query14', (req, res) => {
 });
 
 app.get('/query15', (req, res) => {
-  let query = "";
   
-  con.query(query, function(err, results) {
+  con.query(queries.query15, function(err, results) {
     if (err) {
       console.error("Error fetching employee data:", err);
       res.status(500).send("Error fetching data");
@@ -468,9 +473,8 @@ app.get('/query15', (req, res) => {
 });
 
 app.get('/query16', (req, res) => {
-  let query = "";
   
-  con.query(query, function(err, results) {
+  con.query(queries.query16, function(err, results) {
     if (err) {
       console.error("Error fetching employee data:", err);
       res.status(500).send("Error fetching data");
@@ -481,10 +485,8 @@ app.get('/query16', (req, res) => {
   });
 });
 
-app.get('/query17', (req, res) => {
-  let query = "";
-  
-  con.query(query, function(err, results) {
+app.get('/query17', (req, res) => {  
+  con.query(queries.query17, function(err, results) {
     if (err) {
       console.error("Error fetching employee data:", err);
       res.status(500).send("Error fetching data");
@@ -495,17 +497,22 @@ app.get('/query17', (req, res) => {
   });
 });
 
-app.get('/query18', (req, res) => {
-  let query = "";
+app.post('/query18', (req, res) => {
+  // Extract parameters from the request body
+  const {start_time_18, start_time_18_2, end_time_18, end_time_18_2} = req.body;
   
-  con.query(query, function(err, results) {
-    if (err) {
-      console.error("Error fetching employee data:", err);
-      res.status(500).send("Error fetching data");
-      return;
-    }
-    console.log(results);
-    res.json(results); // Send JSON response
+  // Check for missing parameters
+  if (! start_time_18 || ! start_time_18_2 || ! end_time_18 || ! end_time_18_2) {
+      return res.status(400).send('Missing one or more required parameters');
+  }
+
+  // Execute the query with parameters
+  con.query(queries.query18, [start_time_18, start_time_18_2, end_time_18, end_time_18_2], (err, results) => {
+      if (err) {
+          console.error("Error fetching schedule data:", err);
+          return res.status(500).send("Error fetching data");
+      }
+      res.json(results); // Send JSON response
   });
 });
 

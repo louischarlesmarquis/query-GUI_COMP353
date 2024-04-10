@@ -420,127 +420,37 @@ document.getElementById('runquery10').addEventListener('click', function() {
 });
 
 
-document.getElementById('runquery5').addEventListener('click', function() {
-  fetch('/query11')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      // Displaying the result in the console or on the webpage
-      console.log(data);
-      document.getElementById('queryResult5').innerText = JSON.stringify(data, null, 2);
-    })
-    .catch(error => console.error('There has been a problem with your fetch operation:', error));
-});
-
-
-document.getElementById('runquery6').addEventListener('click', function() {
-  fetch('/query12')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      // Displaying the result in the console or on the webpage
-      console.log(data);
-      document.getElementById('queryResult6').innerText = JSON.stringify(data, null, 2);
-    })
-    .catch(error => console.error('There has been a problem with your fetch operation:', error));
-});
-
-
-document.getElementById('runquery7').addEventListener('click', function() {
-  fetch('/query13')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      // Displaying the result in the console or on the webpage
-      console.log(data);
-      document.getElementById('queryResult7').innerText = JSON.stringify(data, null, 2);
-    })
-    .catch(error => console.error('There has been a problem with your fetch operation:', error));
-});
-
-
-document.getElementById('runquery8').addEventListener('click', function() {
-  fetch('/query14')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      // Displaying the result in the console or on the webpage
-      console.log(data);
-      document.getElementById('queryResult8').innerText = JSON.stringify(data, null, 2);
-    })
-    .catch(error => console.error('There has been a problem with your fetch operation:', error));
-});
-
-
-document.getElementById('runquery9').addEventListener('click', function() {
-  fetch('/query15')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      // Displaying the result in the console or on the webpage
-      console.log(data);
-      document.getElementById('queryResult9').innerText = JSON.stringify(data, null, 2);
-    })
-    .catch(error => console.error('There has been a problem with your fetch operation:', error));
-});
-
-
-document.getElementById('runquery10').addEventListener('click', function() {
-  fetch('/query16')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      // Displaying the result in the console or on the webpage
-      console.log(data);
-      document.getElementById('queryResult10').innerText = JSON.stringify(data, null, 2);
-    })
-    .catch(error => console.error('There has been a problem with your fetch operation:', error));
-});
-
-
 document.getElementById('runquery11').addEventListener('click', function() {
-  fetch('/query17')
-    .then(response => {
+  // Collect data from input fields
+  const employeeId = document.getElementById('employee_id_11').value;
+  
+  // Send a POST request with the collected data
+  fetch('/query11', {
+      method: 'POST', // Specify the request method
+      headers: {
+          'Content-Type': 'application/json', // Specify the content type as JSON
+      },
+      body: JSON.stringify({ // Convert the data to a JSON string
+          employee_id: employeeId,
+      })
+  })
+  .then(response => {
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+          throw new Error('Network response was not ok');
       }
-      return response.json();
-    })
-    .then(data => {
-      // Displaying the result in the console or on the webpage
+      return response.json(); // Parse the JSON in the response
+  })
+  .then(data => {
+      // Display the result in the console or on the webpage
       console.log(data);
       document.getElementById('queryResult11').innerText = JSON.stringify(data, null, 2);
-    })
-    .catch(error => console.error('There has been a problem with your fetch operation:', error));
+  })
+  .catch(error => console.error('There has been a problem with your fetch operation:', error));
 });
 
 
 document.getElementById('runquery12').addEventListener('click', function() {
-  fetch('/query18')
+  fetch('/query12')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -553,6 +463,138 @@ document.getElementById('runquery12').addEventListener('click', function() {
       document.getElementById('queryResult12').innerText = JSON.stringify(data, null, 2);
     })
     .catch(error => console.error('There has been a problem with your fetch operation:', error));
+});
+
+
+document.getElementById('runquery13').addEventListener('click', function() {
+  fetch('/query13')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Displaying the result in the console or on the webpage
+      console.log(data);
+      document.getElementById('queryResult13').innerText = JSON.stringify(data, null, 2);
+    })
+    .catch(error => console.error('There has been a problem with your fetch operation:', error));
+});
+
+
+document.getElementById('runquery14').addEventListener('click', function() {
+  // Collect data from input fields
+  const facility = document.getElementById('facility_14').value;
+  
+  // Send a POST request with the collected data
+  fetch('/query14', {
+      method: 'POST', // Specify the request method
+      headers: {
+          'Content-Type': 'application/json', // Specify the content type as JSON
+      },
+      body: JSON.stringify({ // Convert the data to a JSON string
+          facility_id: facility,
+      })
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json(); // Parse the JSON in the response
+  })
+  .then(data => {
+      // Display the result in the console or on the webpage
+      console.log(data);
+      document.getElementById('queryResult14').innerText = JSON.stringify(data, null, 2);
+  })
+  .catch(error => console.error('There has been a problem with your fetch operation:', error));
+});
+
+
+document.getElementById('runquery15').addEventListener('click', function() {
+  fetch('/query15')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Displaying the result in the console or on the webpage
+      console.log(data);
+      document.getElementById('queryResult15').innerText = JSON.stringify(data, null, 2);
+    })
+    .catch(error => console.error('There has been a problem with your fetch operation:', error));
+});
+
+
+document.getElementById('runquery16').addEventListener('click', function() {
+  fetch('/query16')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Displaying the result in the console or on the webpage
+      console.log(data);
+      document.getElementById('queryResult16').innerText = JSON.stringify(data, null, 2);
+    })
+    .catch(error => console.error('There has been a problem with your fetch operation:', error));
+});
+
+
+document.getElementById('runquery17').addEventListener('click', function() {
+  fetch('/query17')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Displaying the result in the console or on the webpage
+      console.log(data);
+      document.getElementById('queryResult17').innerText = JSON.stringify(data, null, 2);
+    })
+    .catch(error => console.error('There has been a problem with your fetch operation:', error));
+});
+
+
+document.getElementById('runquery18').addEventListener('click', function() {
+  // Collect data from input fields
+  const start_time_18 = document.getElementById('start_time_18').value;
+  const start_time_18_2 = document.getElementById('start_time_18_2').value;
+  const end_time_18 = document.getElementById('end_time_18').value;
+  const end_time_18_2 = document.getElementById('end_time_18_2').value;
+  
+  // Send a POST request with the collected data
+  fetch('/query18', {
+      method: 'POST', // Specify the request method
+      headers: {
+          'Content-Type': 'application/json', // Specify the content type as JSON
+      },
+      body: JSON.stringify({ // Convert the data to a JSON string
+          start_time_18: start_time_18,
+          start_time_18_2: start_time_18_2,
+          end_time_18: end_time_18,
+          end_time_18_2: end_time_18_2
+      })
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json(); // Parse the JSON in the response
+  })
+  .then(data => {
+      // Display the result in the console or on the webpage
+      console.log(data);
+      document.getElementById('queryResult18').innerText = JSON.stringify(data, null, 2);
+  })
+  .catch(error => console.error('There has been a problem with your fetch operation:', error));
 });
 
 

@@ -320,9 +320,464 @@
   <button id="allResidence" type="button" class="btn custom-btn">All Residences</button>
   <div id="allResidenceResult"></div>
 
+    <div class="container">
+      <h2>Person Information</h2>
+      <form id="personForm">
+        <div class="form-group">
+          <label for="personFirstName">First Name</label>
+          <input type="text" class="form-control" id="personFirstName" placeholder="Enter First Name" required>
+        </div>
+        <div class="form-group">
+          <label for="personLastName">Last Name</label>
+          <input type="text" class="form-control" id="personLastName" placeholder="Enter Last Name" required>
+        </div>
+        <div class="form-group">
+          <label for="personDOB">Date of Birth</label>
+          <input type="date" class="form-control" id="personDOB" required>
+        </div>
+        <div class="form-group">
+          <label for="personSSN">Social Security Number</label>
+          <input type="text" class="form-control" id="personSSN" placeholder="Enter SSN" required>
+        </div>
+        <div class="form-group">
+          <label for="personMedicare">Medicare</label>
+          <input type="text" class="form-control" id="personMedicare" placeholder="Enter Medicare Number" required>
+        </div>
+        <div class="form-group">
+          <label for="personPhoneNumber">Phone Number</label>
+          <input type="tel" class="form-control" id="personPhoneNumber" placeholder="Enter Phone Number">
+        </div>
+        <div class="form-group">
+          <label for="personCitizenship">Citizenship</label>
+          <input type="text" class="form-control" id="personCitizenship" placeholder="Enter Citizenship">
+        </div>
+        <div class="form-group">
+          <label for="personEmailAddress">Email Address</label>
+          <input type="email" class="form-control" id="personEmailAddress" placeholder="Enter Email Address">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <div class="container">
+      <h2>Person Information</h2>
+      <form id="personForm">
+        <div class="form-group">
+          <label for="personFirstName">First Name</label>
+          <input type="text" class="form-control" id="personFirstName" placeholder="Enter First Name" required>
+        </div>
+        <div class="form-group">
+          <label for="personLastName">Last Name</label>
+          <input type="text" class="form-control" id="personLastName" placeholder="Enter Last Name" required>
+        </div>
+        <div class="form-group">
+          <label for="personDOB">Date of Birth</label>
+          <input type="date" class="form-control" id="personDOB" required>
+        </div>
+        <div class="form-group">
+          <label for="personSSN">Social Security Number</label>
+          <input type="text" class="form-control" id="personSSN" placeholder="Enter SSN" required>
+        </div>
+        <div class="form-group">
+          <label for="personMedicare">Medicare</label>
+          <input type="text" class="form-control" id="personMedicare" placeholder="Enter Medicare Number" required>
+        </div>
+        <div class="form-group">
+          <label for="personPhoneNumber">Phone Number</label>
+          <input type="tel" class="form-control" id="personPhoneNumber" placeholder="Enter Phone Number">
+        </div>
+        <div class="form-group">
+          <label for="personCitizenship">Citizenship</label>
+          <input type="text" class="form-control" id="personCitizenship" placeholder="Enter Citizenship">
+        </div>
+        <div class="form-group">
+          <label for="personEmailAddress">Email Address</label>
+          <input type="email" class="form-control" id="personEmailAddress" placeholder="Enter Email Address">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <div class="container mt-5">
+      <h2>Edit Person Information</h2>
+      <form id="editPersonForm">
+        <div class="form-group">
+          <label for="personFirstName">First Name</label>
+          <input type="text" class="form-control" id="personFirstName" placeholder="Enter First Name" required>
+        </div>
+        <div class="form-group">
+          <label for="personLastName">Last Name</label>
+          <input type="text" class="form-control" id="personLastName" placeholder="Enter Last Name" required>
+        </div>
+        <div class="form-group">
+          <label for="personDOB">Date of Birth</label>
+          <input type="date" class="form-control" id="personDOB" required>
+        </div>
+        <div class="form-group">
+          <label for="personSSN">Social Security Number</label>
+          <input type="text" class="form-control" id="personSSN" placeholder="Enter SSN" required>
+        </div>
+        <div class="form-group">
+          <label for="personMedicare">Medicare</label>
+          <input type="text" class="form-control" id="personMedicare" placeholder="Enter Medicare Number" required>
+        </div>
+        <div class="form-group">
+          <label for="personPhoneNumber">Phone Number</label>
+          <input type="tel" class="form-control" id="personPhoneNumber" placeholder="Enter Phone Number">
+        </div>
+        <div class="form-group">
+          <label for="personCitizenship">Citizenship</label>
+          <input type="text" class="form-control" id="personCitizenship" placeholder="Enter Citizenship">
+        </div>
+        <div class="form-group">
+          <label for="personEmailAddress">Email Address</label>
+          <input type="email" class="form-control" id="personEmailAddress" placeholder="Enter Email Address">
+        </div>
+        <button type="submit" class="btn btn-primary">Update Person</button>
+      </form>
+    </div>
 
 
-  <!-- MISCELLANOUS QUERIES (#8 ET +)  -->
+    <div class="container mt-5">
+      <h2>View Person Information</h2>
+      <form id="viewPersonForm">
+        <div class="form-group">
+          <label for="viewPersonSSN">Social Security Number</label>
+          <input type="text" class="form-control" id="viewPersonSSN" placeholder="Enter SSN to View" required>
+        </div>
+        <button type="submit" class="btn btn-primary">View Person</button>
+      </form>
+      <!-- Container for displaying the fetched person information -->
+      <div id="personInfo" class="mt-5">
+        <!-- Dynamic content filled by script upon form submission -->
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>Add New Employee</h2>
+      <form id="createEmployeeForm">
+        <div class="form-group">
+          <label for="employeeSSN">Social Security Number</label>
+          <input type="text" class="form-control" id="employeeSSN" placeholder="Employee's SSN" required>
+        </div>
+        <div class="form-group">
+          <label for="employeeRoleID">Role Type ID</label>
+          <input type="number" class="form-control" id="employeeRoleID" placeholder="Role Type ID" required>
+        </div>
+        <div class="form-group">
+          <label for="employeeFacilityID">Facility ID</label>
+          <input type="number" class="form-control" id="employeeFacilityID" placeholder="Facility ID">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <div class="container mt-5">
+      <h2>Delete Employee</h2>
+      <form id="deleteEmployeeForm">
+        <div class="form-group">
+          <label for="deleteEmployeeSSN">Social Security Number</label>
+          <input type="text" class="form-control" id="deleteEmployeeSSN" placeholder="Enter Employee's SSN to Delete"
+                 required>
+        </div>
+        <button type="submit" class="btn btn-danger">Delete Employee</button>
+      </form>
+    </div>
+
+    <div class="container mt-5">
+      <h2>Edit Employee Information</h2>
+      <form id="editEmployeeForm">
+        <div class="form-group">
+          <label for="editEmployeeSSN">Social Security Number</label>
+          <input type="text" class="form-control" id="editEmployeeSSN" placeholder="Employee's SSN" required>
+        </div>
+        <div class="form-group">
+          <label for="editEmployeeRoleID">Role Type ID</label>
+          <input type="number" class="form-control" id="editEmployeeRoleID" placeholder="New Role Type ID" required>
+        </div>
+        <div class="form-group">
+          <label for="editEmployeeFacilityID">Facility ID</label>
+          <input type="number" class="form-control" id="editEmployeeFacilityID" placeholder="New Facility ID">
+        </div>
+        <button type="submit" class="btn btn-primary">Update Employee</button>
+      </form>
+    </div>
+
+
+    <div class="container mt-5">
+      <h2>View Employee Information</h2>
+      <form id="viewEmployeeForm">
+        <div class="form-group">
+          <label for="viewEmployeeSSN">Social Security Number</label>
+          <input type="text" class="form-control" id="viewEmployeeSSN" placeholder="Enter Employee's SSN to View"
+                 required>
+        </div>
+        <button type="submit" class="btn btn-primary">View Employee</button>
+      </form>
+      <div id="employeeDetails" class="mt-4">
+        <!-- Employee details to be filled in here based on the search -->
+      </div>
+    </div>
+
+
+    <div class="container">
+      <h2>Add New Vaccination Record</h2>
+      <form id="addVaccinationForm">
+        <div class="form-group">
+          <label for="vaccinationSSN">Social Security Number</label>
+          <input type="text" class="form-control" id="vaccinationSSN" placeholder="Enter Person's SSN" required>
+        </div>
+        <div class="form-group">
+          <label for="vaccinationType">Vaccination Type ID</label>
+          <input type="number" class="form-control" id="vaccinationType" placeholder="Enter Vaccination Type ID"
+                 required>
+        </div>
+        <div class="form-group">
+          <label for="doseNumber">Dose Number</label>
+          <input type="number" class="form-control" id="doseNumber" placeholder="Enter Dose Number" required>
+        </div>
+        <div class="form-group">
+          <label for="vaccinationDate">Vaccination Date</label>
+          <input type="date" class="form-control" id="vaccinationDate" required>
+        </div>
+        <div class="form-group">
+          <label for="facilityID">Facility ID</label>
+          <input type="number" class="form-control" id="facilityID" placeholder="Enter Facility ID">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <div class="container mt-5">
+      <h2>Delete Vaccination Record</h2>
+      <form id="deleteVaccinationForm">
+        <div class="form-group">
+          <label for="deleteVaccinationSSN">Social Security Number</label>
+          <input type="text" class="form-control" id="deleteVaccinationSSN" placeholder="Enter Person's SSN" required>
+        </div>
+        <div class="form-group">
+          <label for="deleteDoseNumber">Dose Number</label>
+          <input type="number" class="form-control" id="deleteDoseNumber" placeholder="Enter Dose Number" required>
+        </div>
+        <button type="submit" class="btn btn-danger">Delete Record</button>
+      </form>
+    </div>
+
+
+    <div class="container mt-5">
+      <h2>Edit Vaccination Record</h2>
+      <form id="editVaccinationForm">
+        <!-- Assuming SSN and Dose Number as key identifiers for edit -->
+        <div class="form-group">
+          <label for="editVaccinationSSN">Social Security Number</label>
+          <input type="text" class="form-control" id="editVaccinationSSN" placeholder="Enter Person's SSN" required>
+        </div>
+        <div class="form-group">
+          <label for="editDoseNumber">Dose Number</label>
+          <input type="number" class="form-control" id="editDoseNumber" placeholder="Enter Dose Number" required>
+        </div>
+        <!-- Additional editable fields -->
+        <div class="form-group">
+          <label for="editVaccinationType">Vaccination Type ID</label>
+          <input type="number" class="form-control" id="editVaccinationType" required>
+        </div>
+        <div class="form-group">
+          <label for="editVaccinationDate">Vaccination Date</label>
+          <input type="date" class="form-control" id="editVaccinationDate" required>
+        </div>
+        <div class="form-group">
+          <label for="editFacilityID">Facility ID</label>
+          <input type="number" class="form-control" id="editFacilityID">
+        </div>
+        <button type="submit" class="btn btn-primary">Update Record</button>
+      </form>
+    </div>
+
+    <div class="container mt-5">
+      <h2>View Vaccination Record</h2>
+      <form id="viewVaccinationForm">
+        <div class="form-group">
+          <label for="viewVaccinationSSN">Social Security Number</label>
+          <input type="text" class="form-control" id="viewVaccinationSSN" placeholder="Enter Person's SSN" required>
+        </div>
+        <div class="form-group">
+          <label for="viewDoseNumber">Dose Number (optional)</label>
+          <input type="number" class="form-control" id="viewDoseNumber" placeholder="Enter Dose Number">
+        </div>
+        <button type="submit" class="btn btn-primary">View Record</button>
+      </form>
+      <div id="vaccinationDetails" class="mt-4">
+        <!-- Dynamic content updated by script -->
+      </div>
+    </div>
+
+
+    <div class="container">
+      <h2>Add New Infection Record</h2>
+      <form id="addInfectionForm">
+        <div class="form-group">
+          <label for="infectionSSN">Social Security Number</label>
+          <input type="text" class="form-control" id="infectionSSN" placeholder="Enter Person's SSN" required>
+        </div>
+        <div class="form-group">
+          <label for="infectionType">Infection Type ID</label>
+          <input type="number" class="form-control" id="infectionType" placeholder="Enter Infection Type ID" required>
+        </div>
+        <div class="form-group">
+          <label for="infectionDate">Date of Infection</label>
+          <input type="date" class="form-control" id="infectionDate" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <div class="container mt-5">
+      <h2>Delete Infection Record</h2>
+      <form id="deleteInfectionForm">
+        <div class="form-group">
+          <label for="deleteInfectionSSN">Social Security Number</label>
+          <input type="text" class="form-control" id="deleteInfectionSSN" placeholder="Enter Person's SSN" required>
+        </div>
+        <div class="form-group">
+          <label for="deleteInfectionDate">Date of Infection</label>
+          <input type="date" class="form-control" id="deleteInfectionDate" required>
+        </div>
+        <button type="submit" class="btn btn-danger">Delete Record</button>
+      </form>
+    </div>
+
+
+    <div class="container mt-5">
+      <h2>Edit Infection Record</h2>
+      <form id="editInfectionForm">
+        <div class="form-group">
+          <label for="editInfectionSSN">Social Security Number</label>
+          <input type="text" class="form-control" id="editInfectionSSN" placeholder="Enter Person's SSN" required>
+        </div>
+        <div class="form-group">
+          <label for="editInfectionType">Infection Type ID</label>
+          <input type="number" class="form-control" id="editInfectionType" placeholder="Enter New Infection Type ID"
+                 required>
+        </div>
+        <div class="form-group">
+          <label for="editInfectionDate">Date of Infection</label>
+          <input type="date" class="form-control" id="editInfectionDate" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Record</button>
+      </form>
+    </div>
+
+    <div class="container mt-5">
+      <h2>View Infection Record</h2>
+      <form id="viewInfectionForm">
+        <div class="form-group">
+          <label for="viewInfectionSSN">Social Security Number</label>
+          <input type="text" class="form-control" id="viewInfectionSSN" placeholder="Enter Person's SSN" required>
+        </div>
+        <div class="form-group">
+          <label for="viewInfectionDate">Date of Infection</label>
+          <input type="date" class="form-control" id="viewInfectionDate" required>
+        </div>
+        <button type="submit" class="btn btn-primary">View Record</button>
+      </form>
+      <div id="infectionDetails" class="mt-4">
+        <!-- Dynamic content updated by script -->
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>Add Employee Schedule</h2>
+      <form id="addScheduleForm">
+        <div class="form-group">
+          <label for="scheduleEmployeeId">Employee ID</label>
+          <input type="number" class="form-control" id="scheduleEmployeeId" placeholder="Enter Employee ID" required>
+        </div>
+        <div class="form-group">
+          <label for="scheduleFacilityId">Facility ID</label>
+          <input type="number" class="form-control" id="scheduleFacilityId" placeholder="Enter Facility ID" required>
+        </div>
+        <div class="form-group">
+          <label for="scheduleDate">Date</label>
+          <input type="date" class="form-control" id="scheduleDate" required>
+        </div>
+        <div class="form-group">
+          <label for="scheduleStartTime">Start Time</label>
+          <input type="time" class="form-control" id="scheduleStartTime" required>
+        </div>
+        <div class="form-group">
+          <label for="scheduleEndTime">End Time</label>
+          <input type="time" class="form-control" id="scheduleEndTime" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+
+    <div class="container mt-5">
+      <h2>Delete Employee Schedule</h2>
+      <form id="deleteScheduleForm">
+        <div class="form-group">
+          <label for="deleteScheduleEmployeeId">Employee ID</label>
+          <input type="number" class="form-control" id="deleteScheduleEmployeeId" placeholder="Enter Employee ID"
+                 required>
+        </div>
+        <div class="form-group">
+          <label for="deleteScheduleDate">Date</label>
+          <input type="date" class="form-control" id="deleteScheduleDate" required>
+        </div>
+        <button type="submit" class="btn btn-danger">Delete Schedule</button>
+      </form>
+    </div>
+
+    <div class="container mt-5">
+      <h2>Edit Employee Schedule</h2>
+      <form id="editScheduleForm">
+        <div class="form-group">
+          <label for="editScheduleEmployeeId">Employee ID</label>
+          <input type="number" class="form-control" id="editScheduleEmployeeId" placeholder="Enter Employee ID"
+                 required>
+        </div>
+        <div class="form-group">
+          <label for="editScheduleFacilityId">Facility ID</label>
+          <input type="number" class="form-control" id="editScheduleFacilityId" placeholder="New Facility ID" required>
+        </div>
+        <div class="form-group">
+          <label for="editScheduleDate">Date</label>
+          <input type="date" class="form-control" id="editScheduleDate" required>
+        </div>
+        <div class="form-group">
+          <label for="editScheduleStartTime">Start Time</label>
+          <input type="time" class="form-control" id="editScheduleStartTime" required>
+        </div>
+        <div class="form-group">
+          <label for="editScheduleEndTime">End Time</label>
+          <input type="time" class="form-control" id="editScheduleEndTime" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Schedule</button>
+      </form>
+    </div>
+
+    <div class="container mt-5">
+      <h2>View Employee Schedule</h2>
+      <form id="viewScheduleForm">
+        <div class="form-group">
+          <label for="viewScheduleEmployeeId">Employee ID</label>
+          <input type="number" class="form-control" id="viewScheduleEmployeeId" placeholder="Enter Employee ID"
+                 required>
+        </div>
+        <div class="form-group">
+          <label for="viewScheduleDate">Date</label>
+          <input type="date" class="form-control" id="viewScheduleDate" required>
+        </div>
+        <button type="submit" class="btn btn-primary">View Schedule</button>
+      </form>
+      <div id="scheduleDetails" class="mt-4">
+        <!-- Schedule details to be filled here -->
+      </div>
+    </div>
+
+
+    <!-- MISCELLANOUS QUERIES (#8 ET +)  -->
   <div style="margin: 10px;">
     <!-- DON'T USE RUN QUERY 1  -->
 
@@ -349,37 +804,29 @@
     <button id="runquery10" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 10</button>
     <div id="queryResult10"></div>
 
-    <button id="runquery5" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 11</button>
-    <div id="queryResult5"></div>
+    <div>
+      <label for="employee_id_11">Employee ID:</label>
+      <input type="text" id="employee_id_11" name="employee_id_11">
+    </div>
 
-    <button id="runquery6" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 12</button>
-    <div id="queryResult6"></div>
-
-    <button id="runquery7" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 13</button>
-    <div id="queryResult7"></div>
-
-    <button id="runquery8" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 14</button>
-    <div id="queryResult8"></div>
-
-    <button id="runquery9" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 15</button>
-    <div id="queryResult9"></div>
-
-    <button id="runquery10" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 16</button>
-    <div id="queryResult10"></div>
-
-    <button id="runquery11" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 17</button>
+    <button id="runquery11" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 11</button>
     <div id="queryResult11"></div>
 
-    <button id="runquery12" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 18</button>
+    <button id="runquery12" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 12</button>
     <div id="queryResult12"></div>
 
-    <button id="runquery13" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 19</button>
+    <button id="runquery13" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 13</button>
     <div id="queryResult13"></div>
 
-    <button id="runquery14" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 20</button>
+    <div>
+      <label for="facility_14">Facility ID:</label>
+      <input type="text" id="facility_14" name="facility_14">
+    </div>
+
+    <button id="runquery14" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 14</button>
     <div id="queryResult14"></div>
 
-    <button id="runquery15" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 21</button>
+    <button id="runquery15" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 15</button>
     <div id="queryResult15"></div>
 
 
@@ -400,6 +847,44 @@
               <option value="3">SARS COV 2 VARIANT</option>
             </select>
         </div>
+    <button id="runquery21" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 21</button>
+    <div id="queryResult21"></div>
+
+    <button id="runquery16" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 16</button>
+    <div id="queryResult16"></div>
+
+    <button id="runquery17" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 17</button>
+    <div id="queryResult17"></div>
+
+    <div>
+      <label for="start_time_18">Start Time 1st window</label>
+      <input type="text" id="start_time_18" name="start_time_18">
+    </div>
+
+    <div>
+      <label for="start_time_18_2">End time for 1st window</label>
+      <input type="text" id="start_time_18_2" name="start_time_18_2">
+    </div>
+
+    <div>
+      <label for="end_time_18">Start time for 2nd window</label>
+      <input type="text" id="end_time_18" name="end_time_18">
+    </div>
+
+    <div>
+      <label for="end_time_18_2">End time for 2nd window</label>
+      <input type="text" id="end_time_18_2" name="end_time_18_2">
+    </div>
+
+    <button id="runquery18" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 18</button>
+    <div id="queryResult18"></div>
+
+    <button id="runquery19" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 19</button>
+    <div id="queryResult19"></div>
+
+    <button id="runquery20" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 20</button>
+    <div id="queryResult20"></div>
+
     <button id="runquery21" type="button" class="btn custom-btn" style="margin-top: 10px;">Run Query 21</button>
     <div id="queryResult21"></div>
   </div>
